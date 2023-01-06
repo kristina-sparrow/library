@@ -5,9 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <title>Coding Library</title>
   </head>
   <body>
     <script src="script.js" defer></script>
+    <div class="container">
+      <h1>My Programming Library</h1>
+      <div class="add-book-section">
+        <h3 class="section-title">Add a New Book</h3>
+        <div class="form-container">
+          <form>
+            <div class="form-section">
+              <label for="title">Title</label>
+              <input required id="title" name="title" type="text" />
+              <label for="author">Author</label>
+              <input required id="author" name="author" type="text" />
+              <label for="skill">Skill</label>
+              <select required id="skill" name="skill" type="text">
+                <option
+                  selected
+                  disabled
+                  hidden
+                  style="display: none"
+                  value=""
+                ></option>
+                <option value="javascript">JavaScript</option>
+                <option value="html/css">HTML/CSS</option>
+                <option value="ruby">Ruby</option>
+                <option value="python">Python</option>
+                <option value="c++">C++</option>
+                <option value="general">General</option>
+              </select>
+              <label for="status">Status</label>
+              <select required id="status" name="status" type="text">
+                <option
+                  selected
+                  disabled
+                  hidden
+                  style="display: none"
+                  value=""
+                ></option>
+                <option value="read">Read</option>
+                <option value="to be read">To Be Read</option>
+                <option value="currently reading">Currently Reading</option>
+              </select>
+            </div>
+            <div class="form-section">
+              <button type="submit">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="statistics-section">
+        <h3 class="section-title">Stats</h3>
+        <div class="stat-card books-read">
+          <p class="stat-title">Read</p>
+          <p class="stat" id="number-books-read"></p>
+        </div>
+        <div class="stat-card books-reading">
+          <p class="stat-title">Currently Reading</p>
+          <p class="stat" id="number-books-reading"></p>
+        </div>
+        <div class="stat-card books-unread">
+          <p class="stat-title">To Be Read</p>
+          <p class="stat" id="number-books-unread"></p>
+        </div>
+      </div>
+      <div class="library-section">
+        <h3 class="section-title">Library</h3>
+        <div class="table-container">
+          <table class="library-data">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Skill</th>
+                <th>Status</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
