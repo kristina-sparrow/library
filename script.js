@@ -19,12 +19,15 @@ const defaultData = [
     readStatus: "To Be Read",
   },
 ];
+
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const skill = document.querySelector("#skill");
 const readStatus = document.querySelector("#read-status");
+const readStat = document.querySelector("#num-books-read");
+const readingStat = document.querySelector("#num-books-reading");
+const unreadStat = document.querySelector("#num-books-unread");
 const tableBody = document.querySelector("#library-data");
-
 const form = document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
   addBook();
@@ -45,14 +48,20 @@ function addBook() {
     readStatus.value
   );
   library.push(newBook);
-  renderTable();
+  renderData();
   clearForm();
+}
+
+function getCurrentBook() {
+  let currentBook;
+  return currentBook;
 }
 
 function changeStatus() {}
 
 function deleteBook() {
   library.splice(currentBook, 1);
+  renderData();
 }
 
 function clearForm() {
@@ -70,7 +79,7 @@ function checkLocalStorage() {
   }
 }
 
-function renderTable() {
+function renderData() {
   checkLocalStorage();
   tableBody.innerHTML = "";
   library.forEach((book) => {
@@ -85,6 +94,24 @@ function renderTable() {
       `;
     tableBody.insertAdjacentHTML("afterbegin", htmlBook);
   });
+  updateStats();
 }
 
-renderTable();
+function updateStats() {
+  let booksRead = 0;
+  let booksUnread = 0;
+  let booksReading = 0;
+  for (book of library)
+    if (book.readStatus === "Read") {
+      booksRead += 1;
+    } else if (book.readStatus === "Currently Reading") {
+      booksReading += 1;
+    } else if (book.readStatus === "To Be Read") {
+      booksUnread += 1;
+    }
+  readStat.textContent = booksRead;
+  readingStat.textContent = booksReading;
+  unreadStat.textContent = booksUnread;
+}
+
+renderData();
