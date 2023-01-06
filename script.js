@@ -32,12 +32,26 @@ const form = document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
   addBook();
 });
+const table = document.querySelector("table").addEventListener("click", (e) => {
+  const currentTitle = e.target.parentNode.parentNode.childNodes[1];
+  const currentIndex = e.target.parentNode.parentNode;
+  if (e.target.classList.contains("delete-btn")) {
+    if (confirm(`Are you sure you want to delete "${currentTitle.innerText}"?`))
+      deleteBook(currentIndex.getAttribute("data-index"));
+  }
+});
 
-function Book(title, author, skill, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.skill = skill;
-  this.readStatus = readStatus;
+class Book {
+  constructor(title, author, skill, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.skill = skill;
+    this.readStatus = readStatus;
+  }
+
+  changeStatus(newStatus) {
+    this.readStatus = newStatus;
+  }
 }
 
 function addBook() {
@@ -52,14 +66,7 @@ function addBook() {
   clearForm();
 }
 
-function getCurrentBook() {
-  let currentBook;
-  return currentBook;
-}
-
-function changeStatus() {}
-
-function deleteBook() {
+function deleteBook(currentBook) {
   library.splice(currentBook, 1);
   renderData();
 }
@@ -84,12 +91,12 @@ function renderData() {
   tableBody.innerHTML = "";
   library.forEach((book) => {
     const htmlBook = `
-      <tr>
+      <tr data-index="${library.indexOf(book)}">
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.skill}</td>
-        <td><button class="status-button">${book.readStatus}</button></td>
-        <td><button class="delete-button">Delete</button></td>
+        <td><button class="status-btn">${book.readStatus}</button></td>
+        <td><button class="delete-btn">Delete</button></td>
       </tr>
       `;
     tableBody.insertAdjacentHTML("afterbegin", htmlBook);
