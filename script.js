@@ -28,17 +28,12 @@ const readStat = document.querySelector("#num-books-read");
 const readingStat = document.querySelector("#num-books-reading");
 const unreadStat = document.querySelector("#num-books-unread");
 const tableBody = document.querySelector("#library-data");
-const form = document.querySelector("form").addEventListener("submit", (e) => {
+const table = document.querySelector("table");
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   addBook();
-});
-const table = document.querySelector("table").addEventListener("click", (e) => {
-  const currentTitle = e.target.parentNode.parentNode.childNodes[1];
-  const currentIndex = e.target.parentNode.parentNode;
-  if (e.target.classList.contains("delete-btn")) {
-    if (confirm(`Are you sure you want to delete "${currentTitle.innerText}"?`))
-      deleteBook(currentIndex.getAttribute("data-index"));
-  }
 });
 
 class Book {
@@ -47,10 +42,6 @@ class Book {
     this.author = author;
     this.skill = skill;
     this.readStatus = readStatus;
-  }
-
-  changeStatus(newStatus) {
-    this.readStatus = newStatus;
   }
 }
 
@@ -68,6 +59,11 @@ function addBook() {
 
 function deleteBook(currentBook) {
   library.splice(currentBook, 1);
+  renderData();
+}
+
+function changeStatus(currentBook, newStatus) {
+  library[currentBook].readStatus = newStatus;
   renderData();
 }
 
@@ -95,8 +91,10 @@ function renderData() {
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.skill}</td>
-        <td><button class="status-btn">${book.readStatus}</button></td>
-        <td><button class="delete-btn">Delete</button></td>
+        <td><div class="dropdown"><button class="status-btn">${
+          book.readStatus
+        }<i class="fa-solid fa-caret-down"></i></button><div class="status-dropdown"><a class="status-link">Read</a><a class="status-link">Currently Reading</a><a class="status-link">To Be Read</a></div></td>
+        <td><button class="delete-btn">Delete</button></div></td>
       </tr>
       `;
     tableBody.insertAdjacentHTML("afterbegin", htmlBook);
@@ -120,5 +118,38 @@ function updateStats() {
   readingStat.textContent = booksReading;
   unreadStat.textContent = booksUnread;
 }
+
+table.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    let currentTitle = e.target.parentNode.parentNode.childNodes[1];
+    let currentIndex =
+      e.target.parentNode.parentNode.getAttribute("data-index");
+    if (confirm(`Are you sure you want to delete "${currentTitle.innerText}"?`))
+      deleteBook(currentIndex);
+  }
+  if (e.target.classList.contains("status-btn")) {
+    e.target.nextSibling.classList.toggle("show");
+  }
+  if (e.target.classList.contains("status-link")) {
+    let newStatus = e.target.textContent;
+    let currentIndex =
+      e.target.parentNode.parentNode.parentNode.parentNode.getAttribute(
+        "data-index"
+      );
+    changeStatus(currentIndex, newStatus);
+  }
+});
+
+window.onclick = function (e) {
+  if (!e.target.matches(".status-btn")) {
+    const dropdowns = document.getElementsByClassName("status-dropdown");
+    for (let i = 0; i < dropdowns.length; i++) {
+      let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+      }
+    }
+  }
+};
 
 renderData();
