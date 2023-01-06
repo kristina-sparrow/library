@@ -4,44 +4,87 @@ const defaultData = [
     title: "Eloquent JavaScript: A Modern Introduction to Programming",
     author: "Marijn Haverbeke",
     skill: "JavaScript",
-    status: "unread",
+    readStatus: "Currently Reading",
   },
   {
     title: "The Principles of Object-Oriented JavaScript",
     author: "Nicholas C. Zakas",
     skill: "JavaScript",
-    status: "read",
+    readStatus: "Read",
   },
   {
     title: "You Don't Know JS",
     author: "Kyle Simpson",
     skill: "JavaScript",
-    status: "read",
+    readStatus: "To Be Read",
   },
 ];
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const skill = document.querySelector("#skill");
-const status = document.querySelector("#status");
+const readStatus = document.querySelector("#read-status");
+const tableBody = document.querySelector("#library-data");
 
-function Book(title, author, skill, status) {
+const form = document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  addBook();
+});
+
+function Book(title, author, skill, readStatus) {
   this.title = title;
   this.author = author;
   this.skill = skill;
-  this.status = status;
+  this.readStatus = readStatus;
 }
 
-function addBookToLibrary() {
+function addBook() {
   const newBook = new Book(
     title.value,
     author.value,
     skill.value,
-    status.value
+    readStatus.value
   );
   library.push(newBook);
-  updateLibrary();
+  renderTable();
+  clearForm();
 }
 
-function updateLibrary() {
-  // loop through array and add books to page
+function changeStatus() {}
+
+function deleteBook() {
+  library.splice(currentBook, 1);
 }
+
+function clearForm() {
+  title.value = "";
+  author.value = "";
+  skill.value = "";
+  readStatus.value = "";
+}
+
+function checkLocalStorage() {
+  if (localStorage.getItem("library")) {
+    library = JSON.parse(localStorage.getItem("library"));
+  } else {
+    library = defaultData;
+  }
+}
+
+function renderTable() {
+  checkLocalStorage();
+  tableBody.innerHTML = "";
+  library.forEach((book) => {
+    const htmlBook = `
+      <tr>
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.skill}</td>
+        <td><button class="status-button">${book.readStatus}</button></td>
+        <td><button class="delete-button">Delete</button></td>
+      </tr>
+      `;
+    tableBody.insertAdjacentHTML("afterbegin", htmlBook);
+  });
+}
+
+renderTable();

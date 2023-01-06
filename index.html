@@ -11,6 +11,21 @@
     <script src="script.js" defer></script>
     <div class="container">
       <h1>My Programming Library</h1>
+      <div class="stats-section">
+        <h3 class="section-title">Stats</h3>
+        <div class="stat-card books-read">
+          <p class="stat-title">Read</p>
+          <p class="stat" id="number-books-read"></p>
+        </div>
+        <div class="stat-card books-reading">
+          <p class="stat-title">Currently Reading</p>
+          <p class="stat" id="number-books-reading"></p>
+        </div>
+        <div class="stat-card books-unread">
+          <p class="stat-title">To Be Read</p>
+          <p class="stat" id="number-books-unread"></p>
+        </div>
+      </div>
       <div class="add-book-section">
         <h3 class="section-title">Add a New Book</h3>
         <div class="form-container">
@@ -29,15 +44,15 @@
                   style="display: none"
                   value=""
                 ></option>
-                <option value="javascript">JavaScript</option>
-                <option value="html/css">HTML/CSS</option>
-                <option value="ruby">Ruby</option>
-                <option value="python">Python</option>
-                <option value="c++">C++</option>
-                <option value="general">General</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Python">Python</option>
+                <option value="C++">C++</option>
+                <option value="General">General</option>
               </select>
-              <label for="status">Status</label>
-              <select required id="status" name="status" type="text">
+              <label for="read-status">Status</label>
+              <select required id="read-status" name="read-status" type="text">
                 <option
                   selected
                   disabled
@@ -45,9 +60,9 @@
                   style="display: none"
                   value=""
                 ></option>
-                <option value="read">Read</option>
-                <option value="to be read">To Be Read</option>
-                <option value="currently reading">Currently Reading</option>
+                <option value="Read">Read</option>
+                <option value="To Be Read">To Be Read</option>
+                <option value="Reading">Reading</option>
               </select>
             </div>
             <div class="form-section">
@@ -56,25 +71,10 @@
           </form>
         </div>
       </div>
-      <div class="statistics-section">
-        <h3 class="section-title">Stats</h3>
-        <div class="stat-card books-read">
-          <p class="stat-title">Read</p>
-          <p class="stat" id="number-books-read"></p>
-        </div>
-        <div class="stat-card books-reading">
-          <p class="stat-title">Currently Reading</p>
-          <p class="stat" id="number-books-reading"></p>
-        </div>
-        <div class="stat-card books-unread">
-          <p class="stat-title">To Be Read</p>
-          <p class="stat" id="number-books-unread"></p>
-        </div>
-      </div>
       <div class="library-section">
         <h3 class="section-title">Library</h3>
         <div class="table-container">
-          <table class="library-data">
+          <table>
             <thead>
               <tr>
                 <th>Title</th>
@@ -84,7 +84,7 @@
                 <th>Delete</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="library-data"></tbody>
           </table>
         </div>
       </div>
