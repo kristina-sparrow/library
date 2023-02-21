@@ -122,10 +122,13 @@ function updateStats() {
 table.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
     let currentTitle = e.target.parentNode.parentNode.childNodes[1];
-    let currentIndex =
-      e.target.parentNode.parentNode.getAttribute("data-index");
-    if (confirm(`Are you sure you want to delete "${currentTitle.innerText}"?`))
+    if (
+      confirm(`Are you sure you want to delete "${currentTitle.innerText}"?`)
+    ) {
+      let currentIndex =
+        e.target.parentNode.parentNode.getAttribute("data-index");
       deleteBook(currentIndex);
+    }
   }
   if (e.target.classList.contains("status-btn")) {
     e.target.nextSibling.classList.toggle("show");
