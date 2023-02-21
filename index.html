@@ -11,75 +11,92 @@
       crossorigin="anonymous"
     ></script>
     <script src="index.js" type="module" defer></script>
-    <title>Library</title>
+    <title>Coding Library</title>
   </head>
   <body>
-    <div class="container">
-      <h1>My Programming Library</h1>
-      <div class="stats-section">
+    <div class="container--page">
+      <header class="header">
+        <h1 class="header-title">My Coding Library</h1>
+      </header>
+      <section class="section--stats">
         <h3 class="section-title">Stats</h3>
-        <div class="stat-card books-read">
-          <p class="stat-title">Read</p>
-          <p class="stat" id="num-books-read"></p>
+        <div class="container--stat-cards">
+          <div class="stat-card books-read">
+            <p class="stat-name">Read</p>
+            <p class="stat" id="num-books-read"></p>
+          </div>
+          <div class="stat-card books-reading">
+            <p class="stat-name">Currently Reading</p>
+            <p class="stat" id="num-books-reading"></p>
+          </div>
+          <div class="stat-card books-unread">
+            <p class="stat-name">To Be Read</p>
+            <p class="stat" id="num-books-unread"></p>
+          </div>
         </div>
-        <div class="stat-card books-reading">
-          <p class="stat-title">Currently Reading</p>
-          <p class="stat" id="num-books-reading"></p>
-        </div>
-        <div class="stat-card books-unread">
-          <p class="stat-title">To Be Read</p>
-          <p class="stat" id="num-books-unread"></p>
-        </div>
-      </div>
-      <div class="add-book-section">
+      </section>
+      <section class="section--add">
         <h3 class="section-title">Add a New Book</h3>
-        <div class="form-container">
-          <form>
-            <div class="form-section">
-              <label for="title">Title</label>
-              <input required id="title" name="title" type="text" />
-              <label for="author">Author</label>
-              <input required id="author" name="author" type="text" />
-              <label for="skill">Skill</label>
-              <select required id="skill" name="skill" type="text">
-                <option
-                  selected
-                  disabled
-                  hidden
-                  style="display: none"
-                  value=""
-                ></option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="HTML/CSS">HTML/CSS</option>
-                <option value="Ruby">Ruby</option>
-                <option value="Python">Python</option>
-                <option value="C++">C++</option>
-                <option value="General">General</option>
-              </select>
-              <label for="read-status">Status</label>
-              <select required id="read-status" name="read-status" type="text">
-                <option
-                  selected
-                  disabled
-                  hidden
-                  style="display: none"
-                  value=""
-                ></option>
-                <option value="Read">Read</option>
-                <option value="To Be Read">To Be Read</option>
-                <option value="Reading">Reading</option>
-              </select>
-            </div>
-            <div class="form-section">
-              <button type="submit">Add</button>
-            </div>
+        <div class="container--form">
+          <form class="form">
+            <section class="form-section">
+              <div class="input-group">
+                <label for="title">Title</label>
+                <input required id="title" name="title" type="text" />
+              </div>
+              <div class="input-group">
+                <label for="author">Author</label>
+                <input required id="author" name="author" type="text" />
+              </div>
+              <div class="input-group">
+                <label for="skill">Skill</label>
+                <select required id="skill" name="skill" type="text">
+                  <option
+                    selected
+                    disabled
+                    hidden
+                    style="display: none"
+                    value=""
+                  ></option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="HTML/CSS">HTML/CSS</option>
+                  <option value="Ruby">Ruby</option>
+                  <option value="Python">Python</option>
+                  <option value="C++">C++</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="read-status">Status</label>
+                <select
+                  required
+                  id="read-status"
+                  name="read-status"
+                  type="text"
+                >
+                  <option
+                    selected
+                    disabled
+                    hidden
+                    style="display: none"
+                    value=""
+                  ></option>
+                  <option value="Read">Read</option>
+                  <option value="To Be Read">To Be Read</option>
+                  <option value="Reading">Reading</option>
+                </select>
+              </div>
+            </section>
+            <section class="form-section">
+              <button type="submit" class="btn btn-submit">Add</button>
+            </section>
           </form>
         </div>
-      </div>
-      <div class="library-section">
+      </section>
+      <section class="section--library">
         <h3 class="section-title">Library</h3>
-        <div class="table-container">
-          <table>
+        <div class="container--table">
+          <table class="table">
             <thead>
               <tr>
                 <th>Title</th>
@@ -92,7 +109,7 @@
             <tbody id="library-data"></tbody>
           </table>
         </div>
-      </div>
+      </section>
       <footer class="footer">
         <p>Built by Kristina Sparrow</p>
         <a

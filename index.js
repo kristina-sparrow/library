@@ -9,8 +9,8 @@ const readStat = document.querySelector("#num-books-read");
 const readingStat = document.querySelector("#num-books-reading");
 const unreadStat = document.querySelector("#num-books-unread");
 const tableBody = document.querySelector("#library-data");
-const table = document.querySelector("table");
-const form = document.querySelector("form");
+const table = document.querySelector(".table");
+const form = document.querySelector(".form");
 let library = [];
 
 class Book {
@@ -60,10 +60,10 @@ function renderData() {
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.skill}</td>
-        <td><div class="dropdown"><button class="status-btn">${
+        <td><div class="dropdown"><button class="btn btn-status">${
           book.readStatus
-        }<i class="fa-solid fa-caret-down"></i></button><div class="status-dropdown"><a class="status-link">Read</a><a class="status-link">Currently Reading</a><a class="status-link">To Be Read</a></div></td>
-        <td><button class="delete-btn">Delete</button></div></td>
+        }<i class="fa-solid fa-caret-down"></i></button><div class="status-dropdown"><a class="status-option">Read</a><a class="status-option">Currently Reading</a><a class="status-option">To Be Read</a></div></td>
+        <td><div class="delete"><button class="btn btn-delete">Delete</button></div></td>
       </tr>
       `;
     tableBody.insertAdjacentHTML("afterbegin", htmlBook);
@@ -102,7 +102,7 @@ function changeStatus(index, newStatus) {
 
 // EVENT HANDLERS
 function handleDeleteClick(e) {
-  if (e.target.classList.contains("delete-btn")) {
+  if (e.target.classList.contains("btn-delete")) {
     const currentTitle = e.target.parentNode.parentNode.childNodes[1];
     if (
       window.confirm(
@@ -117,13 +117,13 @@ function handleDeleteClick(e) {
 }
 
 function handleStatusBtnClick(e) {
-  if (e.target.classList.contains("status-btn")) {
+  if (e.target.classList.contains("btn-status")) {
     e.target.nextSibling.classList.toggle("show");
   }
 }
 
 function handleStatusChange(e) {
-  if (e.target.classList.contains("status-link")) {
+  if (e.target.classList.contains("status-option")) {
     const newStatus = e.target.textContent;
     const currentIndex =
       e.target.parentNode.parentNode.parentNode.parentNode.getAttribute(
@@ -150,7 +150,7 @@ form.addEventListener("submit", (e) => {
 });
 
 window.onclick = function (e) {
-  if (!e.target.matches(".status-btn")) {
+  if (!e.target.matches(".btn-status")) {
     closeDropdowns();
   }
 };
