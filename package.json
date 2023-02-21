@@ -30,7 +30,17 @@
     "parserOptions": {
       "ecmaVersion": "latest"
     },
-    "rules": {}
+    "rules": {
+      "no-plusplus": "off",
+      "no-alert": "off",
+      "func-names": "off",
+      "import/extensions": [
+        "error",
+        {
+          "js": "ignorePackages"
+        }
+      ]
+    }
   },
   "devDependencies": {
     "eslint": "^8.34.0",
