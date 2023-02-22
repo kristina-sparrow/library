@@ -103,14 +103,15 @@ function changeStatus(index, newStatus) {
 // EVENT HANDLERS
 function handleDeleteClick(e) {
   if (e.target.classList.contains("btn-delete")) {
-    const currentTitle = e.target.parentNode.parentNode.childNodes[1];
+    const currentTitle =
+      e.target.parentNode.parentNode.parentNode.childNodes[1];
     if (
       window.confirm(
         `Are you sure you want to delete "${currentTitle.innerText}"?`
       )
     ) {
       const currentIndex =
-        e.target.parentNode.parentNode.getAttribute("data-index");
+        e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
       deleteBook(currentIndex);
     }
   }
