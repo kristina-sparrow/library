@@ -18,101 +18,124 @@
       <header class="header">
         <h1 class="header-title">My Coding Library</h1>
       </header>
-      <section class="section--stats">
-        <h3 class="section-title">Stats</h3>
-        <div class="container--stat-cards">
-          <div class="stat-card books-read">
-            <p class="stat-name">Read</p>
-            <p class="stat" id="num-books-read"></p>
+      <main class="main">
+        <section class="section--stats">
+          <div class="container--stat-cards">
+            <div class="stat-card books-read">
+              <p class="stat" id="num-books-read"></p>
+              <p class="stat-name">Read</p>
+            </div>
+            <div class="stat-card books-reading">
+              <p class="stat" id="num-books-reading"></p>
+              <p class="stat-name">Currently Reading</p>
+            </div>
+            <div class="stat-card books-unread">
+              <p class="stat" id="num-books-unread"></p>
+              <p class="stat-name">To Be Read</p>
+            </div>
           </div>
-          <div class="stat-card books-reading">
-            <p class="stat-name">Currently Reading</p>
-            <p class="stat" id="num-books-reading"></p>
+        </section>
+        <section class="section--add">
+          <h3 class="section-title">Add a New Book</h3>
+          <div class="container--form">
+            <form class="form">
+              <section class="form-section">
+                <div class="input-group">
+                  <label for="title">Title</label>
+                  <input
+                    required
+                    class="input"
+                    id="title"
+                    name="title"
+                    type="text"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="author">Author</label>
+                  <input
+                    required
+                    class="input"
+                    id="author"
+                    name="author"
+                    type="text"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="skill">Skill</label>
+                  <select
+                    required
+                    class="input"
+                    id="skill"
+                    name="skill"
+                    type="text"
+                  >
+                    <option
+                      selected
+                      disabled
+                      hidden
+                      style="display: none"
+                      value=""
+                    ></option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Python">Python</option>
+                    <option value="C++">C++</option>
+                    <option value="UI/UX">UI/UX</option>
+                    <option value="Architecture">Architecture</option>
+                    <option value="Data">Data</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="General">General</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label for="read-status">Status</label>
+                  <select
+                    class="input"
+                    required
+                    id="read-status"
+                    name="read-status"
+                    type="text"
+                  >
+                    <option
+                      selected
+                      disabled
+                      hidden
+                      style="display: none"
+                      value=""
+                    ></option>
+                    <option value="Read">Read</option>
+                    <option value="To Be Read">To Be Read</option>
+                    <option value="Reading">Currently Reading</option>
+                  </select>
+                </div>
+              </section>
+              <section class="form-section">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fa-solid fa-plus"></i>
+                  Add
+                </button>
+              </section>
+            </form>
           </div>
-          <div class="stat-card books-unread">
-            <p class="stat-name">To Be Read</p>
-            <p class="stat" id="num-books-unread"></p>
+        </section>
+        <section class="section--library">
+          <h3 class="section-title">Library</h3>
+          <div class="container--table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="left">Title</th>
+                  <th class="left">Author</th>
+                  <th class="left">Skill</th>
+                  <th class="left">Status</th>
+                  <th class="center">Delete</th>
+                </tr>
+              </thead>
+              <tbody id="library-data"></tbody>
+            </table>
           </div>
-        </div>
-      </section>
-      <section class="section--add">
-        <h3 class="section-title">Add a New Book</h3>
-        <div class="container--form">
-          <form class="form">
-            <section class="form-section">
-              <div class="input-group">
-                <label for="title">Title</label>
-                <input required id="title" name="title" type="text" />
-              </div>
-              <div class="input-group">
-                <label for="author">Author</label>
-                <input required id="author" name="author" type="text" />
-              </div>
-              <div class="input-group">
-                <label for="skill">Skill</label>
-                <select required id="skill" name="skill" type="text">
-                  <option
-                    selected
-                    disabled
-                    hidden
-                    style="display: none"
-                    value=""
-                  ></option>
-                  <option value="JavaScript">JavaScript</option>
-                  <option value="Ruby">Ruby</option>
-                  <option value="Python">Python</option>
-                  <option value="C++">C++</option>
-                  <option value="UI/UX">UI/UX</option>
-                  <option value="Architecture">Architecture</option>
-                  <option value="Data">Data</option>
-                  <option value="DevOps">DevOps</option>
-                  <option value="General">General</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="read-status">Status</label>
-                <select
-                  required
-                  id="read-status"
-                  name="read-status"
-                  type="text"
-                >
-                  <option
-                    selected
-                    disabled
-                    hidden
-                    style="display: none"
-                    value=""
-                  ></option>
-                  <option value="Read">Read</option>
-                  <option value="To Be Read">To Be Read</option>
-                  <option value="Reading">Currently Reading</option>
-                </select>
-              </div>
-            </section>
-            <section class="form-section">
-              <button type="submit" class="btn btn-submit">Add</button>
-            </section>
-          </form>
-        </div>
-      </section>
-      <section class="section--library">
-        <h3 class="section-title">Library</h3>
-        <div class="container--table">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Skill</th>
-                <th>Status</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody id="library-data"></tbody>
-          </table>
-        </div>
-      </section>
+        </section>
+      </main>
       <footer class="footer">
         <p>Built by Kristina Sparrow</p>
         <a

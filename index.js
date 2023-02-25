@@ -57,13 +57,13 @@ function renderData() {
   library.forEach((book) => {
     const htmlBook = `
       <tr data-index="${library.indexOf(book)}">
-        <td>${book.title}</td>
-        <td>${book.author}</td>
-        <td>${book.skill}</td>
-        <td><div class="dropdown"><button class="btn btn-status">${
+        <td class="left">${book.title}</td>
+        <td class="left">${book.author}</td>
+        <td class="left">${book.skill}</td>
+        <td class="left"><div class="dropdown"><button class="btn btn-status">${
           book.readStatus
         }<i class="fa-solid fa-caret-down"></i></button><div class="status-dropdown"><a class="status-option">Read</a><a class="status-option">Currently Reading</a><a class="status-option">To Be Read</a></div></td>
-        <td><div class="delete"><button class="btn btn-delete">Delete</button></div></td>
+        <td class="center"><i class="fa-solid fa-xmark btn-delete"></i></td>
       </tr>
       `;
     tableBody.insertAdjacentHTML("afterbegin", htmlBook);
